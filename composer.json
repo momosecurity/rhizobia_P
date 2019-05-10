@@ -1,0 +1,32 @@
+{
+  "name": "thecastle/rhizobia",
+  "description": "provide protection against common security issues.",
+  "type": "library",
+  "keywords": ["vulnerability","csrf","ssrf","sqli","xss"],
+  "license": "BSD-3-Clause",
+  "authors": [
+    {
+      "name": "thecastle",
+      "email": "projectone@immomo.com",
+      "role": "Developer MOMOSEC"
+    }
+  ],
+  "require": {
+    "php": ">=5.6.0",
+    "ext-pdo": "*",
+    "ext-curl": "*",
+    "ext-mbstring": "*",
+    "ext-openssl": "*"
+  },
+  "autoload": {
+    "psr-4": {
+      "Security\\": "src/",
+      "Security\\URLSecurity\\": "src/URLSecurity",
+      "Security\\EncoderSecurity\\": "src/EncoderSecurity",
+      "Security\\SQLSecurity\\": "src/SLIM",
+      "Security\\HTMLPurifier\\": "src/HTMLPurifier",
+      "Security\\DataSecurity\\": "src/DataSecurity",
+      "Security\\FileSecurity\\": "src/FileSecurity"
+    }
+  }
+}
