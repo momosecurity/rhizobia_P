@@ -1,5 +1,5 @@
 {
-  "name": "thecastle/rhizobia",
+  "name": "momosec/rhizobia",
   "description": "provide protection against common security issues.",
   "type": "library",
   "keywords": ["vulnerability","csrf","ssrf","sqli","xss"],
