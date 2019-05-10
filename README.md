@@ -48,14 +48,12 @@
 # <span id="jump10">一、 安装</span>  
 ### 1、composer.json配置依赖:
   ```
- 
-"repositories": [{
-    "type": "vcs",
-    "url": "github地址"
-}],
-"require": {
-    "thecastle/rhizobia": "1.0.0"
-}
+ "require": {
+     "thecastle/rhizobia": "1.0.0"
+ },
+"repositories":[
+{"type":"vcs","url":"https://github.com/momosecurity/rhizobia_P.git"}]
+
  
   ```
 ### 2、安装依赖:
