@@ -1,3 +1,8 @@
+## 项目简介
+本项目包含两部分：
+[php安全编码规范](https://github.com/momosecurity/rhizobia_P/wiki/php%E5%AE%89%E5%85%A8%E7%BC%96%E7%A0%81%E8%A7%84%E8%8C%83
+)和PHP安全SDK，SDK介绍详见下述。
+
 ## 项目结构
 ```
 ├── composer.json
