@@ -54,7 +54,7 @@
 ### 1、composer.json配置依赖:
   ```
  "require": {
-     "thecastle/rhizobia": "1.0.0"
+     "momosec/rhizobia": "1.0.0"
  },
 "repositories":[
 {"type":"vcs","url":"https://github.com/momosecurity/rhizobia_P.git"}]
