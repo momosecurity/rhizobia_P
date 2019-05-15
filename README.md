@@ -293,8 +293,9 @@ $result= $this->securityUtil->rsaPrivateDecrypt($data);
 #### 2、私钥加密、公钥解密:
 
 ```
-$result=$this->securityUtil->rsaPrivateEncrypt($data ); //私钥加密
-
-$result= $this->securityUtil->rsaPublicDecrypt($data); //公钥解密
+//私钥加密
+$result=$this->securityUtil->rsaPrivateEncrypt($data ); 
+//公钥解密
+$result= $this->securityUtil->rsaPublicDecrypt($data); 
 
 ```

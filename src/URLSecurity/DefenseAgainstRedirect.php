@@ -29,11 +29,65 @@ class DefenseAgainstRedirect
      */
     public function verifyRedirectUrl($url, $white)
     {
+        $host=$this->verifyUrl($url);
+        if($host===false){
+            return false;
+        }
+        if(is_string($white)){
+            if($this->verifySingleRedirectUrl($url,$white,$host)){
+                return true;
+            }
+            return false;
+        }
+
+        if(is_array($white))
+        {
+            $flag = false;
+            foreach ($white as $item) {
+                if(strpos($item,".")!==0){
+                    if($this->verifySingleRedirectUrl($url,$item,$host)){
+                        $flag = true;
+                    }
+                }else if (preg_match("/" . str_replace(".", "\\.", $item) . "$/i", $host)) {
+                    $flag = true;
+                }
+            }
+            if (!$flag) {
+                return false;
+            }
+            if ($this->isInvalidUrl($url, '?', $white)) {
+                return false;
+            }
+            if ($this->isInvalidUrl($url, '\\', $white)) {
+                return false;
+            }
+            return true;
+        }
+        return false;
+    }
+
+
+
+    private function verifySingleRedirectUrl($url,$white,$host){
+
+        $arrayWhite=array($white);
+        if ($this->isInvalidUrl($url, '?', $arrayWhite)) {
+            return false;
+        }
+        if ($this->isInvalidUrl($url, '\\', $arrayWhite)) {
+            return false;
+        }
+        if($host===$white){
+            return true;
+        }
+        return false;
+    }
+
+    private function verifyUrl($url){
         if (is_array($url)) {
             return false;
         }
         $detail = parse_url($url);
-
         if (!isset($detail) || !isset($detail['scheme'])) {
             return false;
         }
@@ -49,26 +103,8 @@ class DefenseAgainstRedirect
         if (!isset($detail["host"])) {
             return false;
         }
-        $host = $detail["host"];
-        $flag = false;
-        foreach ($white as $item) {
-            if (preg_match("/" . str_replace(".", "\\.", $item) . "$/i", $host)) {
-                $flag = true;
-            }
-        }
-        if (!$flag) {
-            return false;
-        }
-        if ($this->isInvalidUrl($url, '?', $white)) {
-            return false;
-        }
-        if ($this->isInvalidUrl($url, '\\', $white)) {
-            return false;
-        }
-        return true;
+        return $detail["host"];
     }
-
-
     /**
      * @param $url
      * @param $char
