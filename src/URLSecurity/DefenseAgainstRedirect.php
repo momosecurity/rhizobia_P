@@ -21,7 +21,6 @@ class DefenseAgainstRedirect
     {
     }
 
-
     /**
      * @param $url
      * @param $white
@@ -34,7 +33,17 @@ class DefenseAgainstRedirect
             return false;
         }
         if(is_string($white)){
-            if($this->verifySingleRedirectUrl($url,$white,$host)){
+            if(strpos($white,".")!==0){
+                if($this->verifySingleRedirectUrl($url,$white,$host)){
+                    return ture;
+                }
+            }else if (strpos($white,".")===0 && preg_match("/" . str_replace(".", "\\.", $white) . "$/i", $host)) {
+                if ($this->isInvalidUrl($url, '?', $white)) {
+                    return false;
+                }
+                if ($this->isInvalidUrl($url, '\\', $white)) {
+                    return false;
+                }
                 return true;
             }
             return false;
@@ -67,8 +76,13 @@ class DefenseAgainstRedirect
     }
 
 
-
-    private function verifySingleRedirectUrl($url,$white,$host){
+    /**
+     * @param $url 重定向url
+     * @param $white 白名单
+     * @param $host 重定向url host
+     * @return bool
+     */
+    private function verifySingleRedirectUrl($url, $white, $host){
 
         $arrayWhite=array($white);
         if ($this->isInvalidUrl($url, '?', $arrayWhite)) {
@@ -83,6 +97,10 @@ class DefenseAgainstRedirect
         return false;
     }
 
+    /**
+     * @param $url 重定向url
+     * @return bool
+     */
     private function verifyUrl($url){
         if (is_array($url)) {
             return false;
