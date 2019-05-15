@@ -154,7 +154,7 @@ $this->securityUtil=SecurityUtil::getInstance();
 ```
 $white=[".protect.domain"];
 if(!$this->securityUtil->verifyRedirectUrl($url,$white)){
-    return ;   //非法url
+    // 非信任域名，提供二次确认页
 }
 // 处理业务逻辑
 
