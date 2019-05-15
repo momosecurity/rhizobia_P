@@ -57,7 +57,7 @@ class DefenseAgainstRedirect
                     if($this->verifySingleRedirectUrl($url,$item,$host)){
                         $flag = true;
                     }
-                }else if (preg_match("/" . str_replace(".", "\\.", $item) . "$/i", $host)) {
+                }else if (strpos($white,".")===0 && preg_match("/" . str_replace(".", "\\.", $item) . "$/i", $host)) {
                     $flag = true;
                 }
             }

@@ -152,8 +152,8 @@ $this->securityUtil=SecurityUtil::getInstance();
 #### 2、校验url:
 
 ```
-//仅信任域名www.protect.domain
-$white="www.protect.domain";
+//仅信任域名protect.domain
+$white="protect.domain";
 //仅信任protect.domain所有子域
 $white=".protect.domain";
 //信任多个域名的子域名或多个域名
