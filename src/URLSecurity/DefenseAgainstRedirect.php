@@ -7,9 +7,10 @@
  */
 namespace Security\URLSecurity;
 
+
 /**
- * Class HttpUtil
- * @package Security\HttpUtil
+ * Class DefenseAgainstRedirect
+ * @package Security\URLSecurity
  */
 class DefenseAgainstRedirect
 {

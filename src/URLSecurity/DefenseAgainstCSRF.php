@@ -8,6 +8,10 @@
 
 namespace Security\URLSecurity;
 
+/**
+ * Class DefenseAgainstCSRF
+ * @package Security\URLSecurity
+ */
 class DefenseAgainstCSRF
 {
     /**

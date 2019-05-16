@@ -7,6 +7,10 @@
  */
 namespace Security\DataSecurity;
 
+/**
+ * Class RSAEncryptHelper
+ * @package Security\DataSecurity
+ */
 class RSAEncryptHelper
 {
     /**

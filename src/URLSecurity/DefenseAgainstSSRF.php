@@ -4,11 +4,14 @@
  * User: thecastle <projectone@immomo.com>
  * Date: 2019/4/17
  * Time: 下午7:33
- * 参考https://zhuanlan.zhihu.com/p/26003487
  */
 
 namespace Security\URLSecurity;
 
+/**
+ * Class DefenseAgainstSSRF
+ * @package Security\URLSecurity
+ */
 class DefenseAgainstSSRF
 {
 
