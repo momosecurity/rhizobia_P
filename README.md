@@ -105,7 +105,7 @@ if(!$this->securityUtil->verifyCSRFToken()){
 }
 // 处理业务逻辑
 ```
-**注意：** 受csrf_token生成方式影响，存在XSS问题时，可能会导致全局csrf防护失效。
+***注意：*** 受csrf_token生成方式影响，存在XSS问题时，可能会导致全局csrf防护失效。
 
 ## <span id="jump2">2.2 XSS</span>
 
@@ -166,7 +166,7 @@ if(!$this->securityUtil->verifyRedirectUrl($url,$white)){
 
 ```
 其中verifyRedirectUrl函数默认参数$white值为array()，需设置白名单域名。<br>
-**说明：** 该封装方法拒绝任何非http、https的URL。
+***注意：*** 该封装方法默认拒绝任何非http、https的URL。
 ## <span id="jump4">2.4 SQL Injection</span>
 
 #### 1、获取数据库实例:
@@ -270,7 +270,7 @@ $data = $this->securityUtil->aesEncrypt($data, $pwd);
 //$pwd为第三步生成的加密密钥
 $result = $this->securityUtil->aesDecrypt($data, $pwd); 
 ```
-
+***注意:***  默认初始化密钥值为"AES_KEY"，需设置初始化密钥。
 ## <span id="jump7">2.7 RSA</span>
 
 #### 1、初始化:
