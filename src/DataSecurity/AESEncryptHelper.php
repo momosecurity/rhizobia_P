@@ -8,6 +8,10 @@
 
 namespace Security\DataSecurity;
 
+/**
+ * Class AESEncryptHelper
+ * @package Security\DataSecurity
+ */
 class AESEncryptHelper
 {
 
