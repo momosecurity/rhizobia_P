@@ -33,47 +33,23 @@ class DefenseAgainstRedirect
         if($host===false){
             return false;
         }
-        if(is_string($white)){
-            if(strpos($white,".")!==0){
-                if($this->verifySingleRedirectUrl($url,$white,$host)){
-                    return ture;
-                }
-            }else if (strpos($white,".")===0 && preg_match("/" . str_replace(".", "\\.", $white) . "$/i", $host)) {
-                if ($this->isInvalidUrl($url, '?', $white)) {
-                    return false;
-                }
-                if ($this->isInvalidUrl($url, '\\', $white)) {
-                    return false;
-                }
-                return true;
-            }
-            return false;
+        if(is_string($white)) {
+            $white = array($white);
         }
 
-        if(is_array($white))
-        {
-            $flag = false;
-            foreach ($white as $item) {
-                if(strpos($item,".")!==0){
-                    if($this->verifySingleRedirectUrl($url,$item,$host)){
-                        $flag = true;
-                    }
-                }else if (strpos($item,".")===0 && preg_match("/" . str_replace(".", "\\.", $item) . "$/i", $host)) {
+        $flag = false;
+        foreach ($white as $item) {
+            if(strpos($item,".")!==0){
+                if($this->verifySingleRedirectUrl($url,$item,$host)){
                     $flag = true;
+                    break;
                 }
+            }else if (strpos($item,".")===0 && preg_match("/" . str_replace(".", "\\.", $item) . "$/i", $host)) {
+                $flag = true;
+                break;
             }
-            if (!$flag) {
-                return false;
-            }
-            if ($this->isInvalidUrl($url, '?', $white)) {
-                return false;
-            }
-            if ($this->isInvalidUrl($url, '\\', $white)) {
-                return false;
-            }
-            return true;
         }
-        return false;
+        return $flag && (!$this->isInvalidUrl($url, '?', $white)) && (!$this->isInvalidUrl($url, '\\', $white));
     }
 
 
