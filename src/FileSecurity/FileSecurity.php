@@ -2,18 +2,27 @@
 /**
  * Created by MOMOSEC.
  * User: thecastle <https://github.com/IIComing>
- * Date: 2019/4/17
- * Time: 下午7:33
+ * Date: 2019/5/16
+ * Time: 下午5:53
  */
 
-namespace Security\DataSecurity;
+namespace Security\FileSecurity;
 
 /**
- * @property AESEncryptHelper $aesEncryptHelper
- * @property RSAEncryptHelper $rsaEncryptHelper
- **/
-class EncryptHelper
+ * Class FileSecurity
+ *
+ * @property UploadedFileVerification $uploadedFileVerification
+ * @package Security\FileSecurity
+ */
+class FileSecurity
 {
+    /**
+     * @return UploadedFileVerification
+     */
+    public function getUploadedFileVerification()
+    {
+        return new UploadedFileVerification();
+    }
 
     /**
      * @var array
@@ -22,7 +31,7 @@ class EncryptHelper
 
 
     /**
-     * EncryptHelper constructor.
+     * FileSecurity constructor.
      */
     public function __construct()
     {
@@ -47,21 +56,4 @@ class EncryptHelper
         return isset($this->component[$key]) ? $this->component[$key] : null;
     }
 
-
-    /**
-     * @return AESEncryptHelper
-     */
-    public function getAESEncryptHelper()
-    {
-        return new AESEncryptHelper();
-    }
-
-
-    /**
-     * @return RSAEncryptHelper
-     */
-    public function getRSAEncryptHelper()
-    {
-        return new RSAEncryptHelper();
-    }
 }

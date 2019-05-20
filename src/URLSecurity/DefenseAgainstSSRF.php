@@ -1,7 +1,7 @@
 <?php
 /**
  * Created by MOMOSEC.
- * User: thecastle <projectone@immomo.com>
+ * User: thecastle <https://github.com/IIComing>
  * Date: 2019/4/17
  * Time: 下午7:33
  * 参考https://zhuanlan.zhihu.com/p/26003487
