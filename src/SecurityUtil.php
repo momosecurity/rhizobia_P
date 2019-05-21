@@ -1,7 +1,7 @@
 <?php
 /**
  * Created by MOMOSEC.
- * User: thecastle <projectone@immomo.com>
+ * User: thecastle <https://github.com/IIComing>
  * Date: 2019/4/17
  * Time: 下午7:33
  */
@@ -9,12 +9,14 @@ namespace Security;
 
 use Security\DataSecurity\EncryptHelper;
 use Security\EncoderSecurity\EncoderSecurity;
+use Security\FileSecurity\FileSecurity;
 use Security\URLSecurity\URLSecurity;
 
 /**
  * @property EncoderSecurity $encoderSecurity
  * @property URLSecurity $urlSecurity
  * @property EncryptHelper $encryptHelper
+ * @property FileSecurity $fileSecurity
  **/
 class SecurityUtil
 {
@@ -72,7 +74,26 @@ class SecurityUtil
 
 
 
-    /****************************************编码工具****************************************/
+    /****************************************文件安全****************************************/
+
+    /**
+     * @return FileSecurity
+     */
+    public function getFileSecurity()
+    {
+        return new FileSecurity();
+    }
+
+
+    public function verifyUploadFile($file, $config){
+        $data=array('flag'=>false,'info'=>'上传失败！','ext'=>'');
+        if($file==null || $config==null){
+            return $data;
+        }
+        return $this->fileSecurity->uploadedFileVerification->verifyUploadFile($file,$config);
+    }
+
+    /****************************************编码安全****************************************/
 
     /**
      * @return EncoderSecurity
@@ -136,7 +157,7 @@ class SecurityUtil
         return $this->encoderSecurity->htmlPurifier->purify($html);
     }
 
-    /****************************************url工具****************************************/
+    /****************************************url安全****************************************/
 
     public function getUrlSecurity()
     {
@@ -173,7 +194,7 @@ class SecurityUtil
         return $this->urlSecurity->defenseAgainstSSRF->verifySSRFURL($url);
     }
 
-    /****************************************加解密工具****************************************/
+    /****************************************加解密安全****************************************/
 
     public function getEncryptHelper()
     {
