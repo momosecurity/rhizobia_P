@@ -16,7 +16,8 @@
     "ext-pdo": "*",
     "ext-curl": "*",
     "ext-mbstring": "*",
-    "ext-openssl": "*"
+    "ext-openssl": "*",
+    "ext-fileinfo":"*"
   },
   "autoload": {
     "psr-4": {

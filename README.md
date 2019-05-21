@@ -17,6 +17,9 @@
     │   ├── EncoderSecurity.php
     │   ├── HtmlEntityEncoder.php                   //html 实体编码
     │   └── JavaScriptEncoder.php                   //js编码
+    ├── FileSecurity                                //上传文件安全校验
+    │   ├── FileSecurity.php
+    │   └── UploadedFileVerification.php
     ├── HTMLPurifier                                //xss payload过滤
     │   ├── HTMLPurifier
     │   ├── HTMLPurifier.php
@@ -48,13 +51,14 @@
   - [2.5 SSRF](#jump5)
   - [2.6 AES](#jump6)
   - [2.7 RSA](#jump7)
+  - [2.8 上传文件安全校验](#jump8)
  
  
 # <span id="jump10">一、 安装</span>  
 ### 1、composer.json配置依赖:
   ```
  "require": {
-     "momosec/rhizobia": "1.0.0"
+     "momosec/rhizobia": "1.1"
  },
 "repositories":[
 {"type":"vcs","url":"https://github.com/momosecurity/rhizobia_P.git"}]
@@ -280,7 +284,7 @@ $this->securityUtil->initRSAConfig(dirname(__FILE__)."/pri.key",dirname(__FILE__
 
 ```
 
-#### 2、公钥加密、私钥解密:
+#### 3、公钥加密、私钥解密:
 
 ```
 //公钥加密
@@ -290,7 +294,7 @@ $result= $this->securityUtil->rsaPrivateDecrypt($data);
 
 ```
 
-#### 2、私钥加密、公钥解密:
+#### 4、私钥加密、公钥解密:
 
 ```
 //私钥加密
@@ -299,3 +303,34 @@ $result=$this->securityUtil->rsaPrivateEncrypt($data );
 $result= $this->securityUtil->rsaPublicDecrypt($data); 
 
 ```
+
+
+## <span id="jump8">2.8 上传文件安全校验</span>
+
+#### 1、初始化:
+
+```
+$this->securityUtil=SecurityUtil::getInstance();
+```
+
+#### 2、校验上传文件:
+
+```
+$config=array('limit'=>5 * 1024 * 1024, //允许上传的文件最大大小
+    'type'=>array(                      //允许的上传文件后缀及MIME
+         "gif"=>"image/gif",
+         "jpg"=>"image/jpeg",
+         "png"=>"image/png")
+);
+
+$file = $_FILES["file"];
+$data=$this->securityUtil->verifyUploadFile($file, $config);
+if($data['flag']!==true){
+    return; //上传失败 
+}
+//生成新的文件名拼接$data['ext']上传到文件服务器
+```
+
+
+
+
