@@ -156,9 +156,15 @@ $this->securityUtil=SecurityUtil::getInstance();
 #### 2、校验url:
 
 ```
-$white=[".protect.domain"];
+//仅信任域名protect.domain
+$white="protect.domain";
+//仅信任protect.domain所有子域
+$white=".protect.domain";
+//信任多个域名的子域名或多个域名
+$white=array(".protect.domain","protect1.domain");
+
 if(!$this->securityUtil->verifyRedirectUrl($url,$white)){
-    return ;   //非法url
+    // 非信任域名，退出或提供二次确认页
 }
 // 处理业务逻辑
 
